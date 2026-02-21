@@ -18,8 +18,9 @@
         const iconStyle = section.iconStyle === 'gold' ? ' style="background: var(--elaichi-gold);"' : '';
         const listClass = section.autoGrid ? 'menu-list auto-grid' : 'menu-list';
         const sectionClass = fullwidthMobile ? 'menu-section fullwidth-mobile' : 'menu-section';
+        const dataType = section.type ? ` data-section-type="${section.type}"` : '';
         return `
-            <div class="${sectionClass}">
+            <div class="${sectionClass}"${dataType}>
                 <div class="section-title">
                     <div class="section-icon"${iconStyle}>${section.icon}</div>
                     ${section.title}
@@ -60,8 +61,9 @@
     }
 
     function renderFoodCategory(cat) {
+        const dataType = cat.type ? ` data-section-type="${cat.type}"` : '';
         return `
-            <div class="food-category">
+            <div class="food-category"${dataType}>
                 <div class="category-header"><div class="category-icon">${cat.icon}</div><div class="category-title">${cat.title}</div></div>
                 <div class="items-grid">
                     ${cat.items.map(i => `<div class="food-item"><span class="food-name">${i.name}</span><span class="food-price">${i.price}</span></div>`).join('')}
@@ -133,7 +135,7 @@
             <div class="menu-grid">
                 ${d.sections.map(s => renderMenuSection(s)).join('')}
             </div>
-            <div class="menu-section" style="margin-top: var(--space-lg);">
+            <div class="menu-section" data-section-type="${d.comboSection.type || 'sandwiches'}" style="margin-top: var(--space-lg);">
                 <div class="section-title"><div class="section-icon">${d.comboSection.icon}</div>${d.comboSection.title}</div>
                 <div class="combo-grid">
                     ${d.comboSection.items.map(renderComboCard).join('')}

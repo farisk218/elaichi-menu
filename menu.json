@@ -4,6 +4,7 @@
     "sections": [
       {
         "icon": "🍋",
+        "type": "lime",
         "title": "Lime Juices",
         "items": [
           { "name": "Fresh Lime", "price": "₹20" },
@@ -28,6 +29,7 @@
       },
       {
         "icon": "🍊",
+        "type": "fruit-juices",
         "title": "Fresh Fruit Juices",
         "autoGrid": true,
         "items": [
@@ -68,6 +70,7 @@
       },
       {
         "icon": "🥤",
+        "type": "signature-shakes",
         "title": "Signature Shakes",
         "items": [
           { "name": "Oreo / Oreo Monster", "price": "₹60/70" },
@@ -88,6 +91,7 @@
       },
       {
         "icon": "🥗",
+        "type": "salads-bowls",
         "title": "Salads & Bowls",
         "items": [
           { "name": "Gudbud", "price": "₹120" },
@@ -110,6 +114,7 @@
       {
         "icon": "☕",
         "iconStyle": "gold",
+        "type": "hot-beverages",
         "title": "Hot Beverages",
         "items": [
           { "name": "Tea", "price": "₹12" },
@@ -124,6 +129,7 @@
       {
         "icon": "🧊",
         "iconStyle": "gold",
+        "type": "cold-milk",
         "title": "Cold Milk Drinks",
         "items": [
           { "name": "Cold Coffee", "price": "₹60" },
@@ -156,6 +162,7 @@
     "categories": [
       {
         "icon": "🍟",
+        "type": "fries",
         "title": "Fries & Crispy",
         "items": [
           { "name": "French Fries", "price": "₹70" },
@@ -166,6 +173,7 @@
       },
       {
         "icon": "🍗",
+        "type": "chicken",
         "title": "Chicken Starters",
         "items": [
           { "name": "Lolly Pop (4PC)", "price": "₹129" },
@@ -187,6 +195,7 @@
       },
       {
         "icon": "🍜",
+        "type": "maggi",
         "title": "Maggi Noodles",
         "items": [
           { "name": "Plain Maggi", "price": "₹30" },
@@ -209,6 +218,7 @@
     "sections": [
       {
         "icon": "🍔",
+        "type": "burgers",
         "title": "Burgers",
         "items": [
           { "name": "Chicken Steak", "price": "₹140" },
@@ -232,6 +242,7 @@
     ],
     "comboSection": {
       "icon": "🥪",
+      "type": "sandwiches",
       "title": "Sandwiches & Clubs",
       "items": [
         { "name": "Veg Sandwich", "price": "₹50-90" },

@@ -500,6 +500,298 @@
             }
         }
 
+
+        /* Menu Card Background Images */
+        .menu-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.08;
+            z-index: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-section:hover::before {
+            opacity: 0.12;
+        }
+
+        /* Light cards need higher opacity for images to show on white */
+        .content-page .menu-section[data-section-type]::before {
+            opacity: 0.6;
+        }
+
+        .content-page .menu-section[data-section-type]:hover::before {
+            opacity: 0.6;
+        }
+
+        .content-page .food-category[data-section-type]::before {
+            opacity: 0.6;
+        }
+
+        /* Specific background images for each section */
+        .menu-section[data-section-type="lime"]::before {
+            background-image: url('https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=600&q=80');
+            background-position: right center;
+            background-size: 60% 100%;
+            background-repeat: no-repeat;
+        }
+
+        .menu-section[data-section-type="soda"]::before {
+            background-image: url('https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=600&q=80');
+            background-position: bottom left;
+            background-size: 50% 70%;
+            background-repeat: no-repeat;
+        }
+
+        .menu-section[data-section-type="fruit-juices"]::before {
+            background-image: url('https://images.unsplash.com/photo-1613478223719-2ab802602423?w=600&q=80');
+            background-position: center right;
+            background-size: 40% 100%;
+            background-repeat: no-repeat;
+        }
+
+        .menu-section[data-section-type="falooda"]::before {
+            background-image: url('https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=600&q=80');
+            background-position: top right;
+            background-size: 55% 80%;
+            background-repeat: no-repeat;
+        }
+
+        .menu-section[data-section-type="signature-shakes"]::before {
+            background-image: url('https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=600&q=80');
+            background-position: bottom right;
+            background-size: 50% 75%;
+            background-repeat: no-repeat;
+        }
+
+        .menu-section[data-section-type="fresh-shakes"]::before {
+            background-image: url('https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=600&q=80');
+            background-position: center left;
+            background-size: 45% 100%;
+            background-repeat: no-repeat;
+        }
+
+        .menu-section[data-section-type="salads-bowls"]::before {
+            background-image: url('https://images.unsplash.com/photo-1519996529931-28324d5a630e?w=600&q=80');
+            background-position: right bottom;
+            background-size: 50% 70%;
+            background-repeat: no-repeat;
+        }
+
+        .menu-section[data-section-type="hot-beverages"]::before {
+            background-image: url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&q=80');
+            background-position: right center;
+            background-size: 55% 100%;
+            background-repeat: no-repeat;
+            opacity: 0.06;
+        }
+
+        .menu-section[data-section-type="cold-milk"]::before {
+            background-image: url('https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80');
+            background-position: bottom right;
+            background-size: 50% 80%;
+            background-repeat: no-repeat;
+            opacity: 0.06;
+        }
+
+        .menu-section[data-section-type="mojitos"]::before {
+            background-image: url('https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=600&q=80');
+            background-position: center right;
+            background-size: 45% 100%;
+            background-repeat: no-repeat;
+            opacity: 0.06;
+        }
+
+        .food-category[data-section-type="fries"]::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1576107232684-1279f390859f?w=600&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.06;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Chicken Starters - Fried chicken */
+        .food-category[data-section-type="chicken"]::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600&q=80');
+            background-position: right center;
+            background-size: 50% 100%;
+            opacity: 0.06;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Veg Starters - Momos/dumplings */
+        .food-category[data-section-type="veg-starters"]::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=600&q=80');
+            background-position: bottom right;
+            background-size: 45% 80%;
+            opacity: 0.06;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Maggi - Noodles */
+        .food-category[data-section-type="maggi"]::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&q=80');
+            background-position: center;
+            background-size: cover;
+            opacity: 0.05;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .menu-section[data-section-type="burgers"]::before {
+            background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80');
+            background-position: right center;
+            background-size: 55% 100%;
+            background-repeat: no-repeat;
+        }
+
+        .menu-section[data-section-type="wraps"]::before {
+            background-image: url('https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=600&q=80');
+            background-position: bottom right;
+            background-size: 50% 80%;
+            background-repeat: no-repeat;
+        }
+
+        .menu-section[data-section-type="sandwiches"]::before {
+            background-image: url('https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80');
+            background-position: center right;
+            background-size: 45% 100%;
+            background-repeat: no-repeat;
+        }
+
+        /* Malabar Specials - Avil Milk */
+        .special-card:nth-child(1)::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=600&q=80');
+            background-position: right center;
+            background-size: 50% 100%;
+            opacity: 0.08;
+            z-index: 0;
+            pointer-events: none;
+            border-radius: 20px;
+        }
+
+        /* Avil Milk Special */
+        .special-card:nth-child(2)::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=600&q=80');
+            background-position: top right;
+            background-size: 55% 70%;
+            opacity: 0.08;
+            z-index: 0;
+            pointer-events: none;
+            border-radius: 20px;
+        }
+
+        /* Avil Milk Pista */
+        .special-card:nth-child(3)::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1559598467-f8b76c8155d0?w=600&q=80');
+            background-position: bottom right;
+            background-size: 50% 80%;
+            opacity: 0.08;
+            z-index: 0;
+            pointer-events: none;
+            border-radius: 20px;
+        }
+
+        /* Avil Milk Strawberry */
+        .special-card:nth-child(4)::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=80');
+            background-position: center right;
+            background-size: 45% 100%;
+            opacity: 0.08;
+            z-index: 0;
+            pointer-events: none;
+            border-radius: 20px;
+        }
+
+        /* Ensure content stays above background */
+        .menu-section>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .food-category>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .special-card>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+
+            .menu-section::before,
+            .food-category::before,
+            .special-card::before {
+                opacity: 0.05 !important;
+                background-size: cover !important;
+            }
+        }
+
         /* Content Pages */
         .content-page {
             background: linear-gradient(to bottom, #f8fff0 0%, #ffffff 100%);
