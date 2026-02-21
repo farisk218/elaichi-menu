@@ -990,23 +990,23 @@
 
     <!-- Mobile Bottom Navigation -->
     <nav class="mobile-nav">
-        <a href="#cover" class="nav-item active">
+        <a href="#" class="nav-item active" onclick="event.preventDefault(); scrollToSection('cover', this);">
             <span class="nav-icon">🏠</span>
             <span>Home</span>
         </a>
-        <a href="#juices" class="nav-item">
+        <a href="#" class="nav-item" onclick="event.preventDefault(); scrollToSection('juices', this);">
             <span class="nav-icon">🧃</span>
             <span>Juices</span>
         </a>
-        <a href="#shakes" class="nav-item">
+        <a href="#" class="nav-item" onclick="event.preventDefault(); scrollToSection('shakes', this);">
             <span class="nav-icon">🥤</span>
             <span>Shakes</span>
         </a>
-        <a href="#snacks" class="nav-item">
+        <a href="#" class="nav-item" onclick="event.preventDefault(); scrollToSection('snacks', this);">
             <span class="nav-icon">🍟</span>
             <span>Snacks</span>
         </a>
-        <a href="#meals" class="nav-item">
+        <a href="#" class="nav-item" onclick="event.preventDefault(); scrollToSection('meals', this);">
             <span class="nav-icon">🍔</span>
             <span>Meals</span>
         </a>
@@ -1396,9 +1396,78 @@
     </main>
 
     <script>
-        // Active navigation highlighting based on scroll position
+        // Smooth scroll function with active state management
+        function scrollToSection(sectionId, clickedElement) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Update active state on mobile nav
+                if (clickedElement && clickedElement.classList.contains('nav-item')) {
+                    document.querySelectorAll('.mobile-nav .nav-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    clickedElement.classList.add('active');
+                }
+                
+                // Update active state on desktop nav
+                document.querySelectorAll('.desktop-nav .nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + sectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        }
+
+        // Intersection Observer for scroll-based active state updates
         const sections = document.querySelectorAll('.section');
-        const navItems = document.querySelectorAll('.nav-item, .nav-link');
-n\n        // Intersection Observer for active section detection\n        const observerOptions = {\n            root: null,\n            rootMargin: '-50% 0px -50% 0px',\n            threshold: 0\n        };\n\n        const observer = new IntersectionObserver((entries) => {\n            entries.forEach(entry => {\n                if (entry.isIntersecting) {\n                    const id = entry.target.getAttribute('id');\n                    navItems.forEach(item => {\n                        item.classList.remove('active');\n                        if (item.getAttribute('href') === `#${id}`) {\n                            item.classList.add('active');\n                        }\n                    });\n                }\n            });\n        }, observerOptions);\n\n        sections.forEach(section => observer.observe(section));\n\n        // Smooth scroll polyfill for Safari\n        document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {\n            anchor.addEventListener('click', function (e) {\n                e.preventDefault();\n                const target = document.querySelector(this.getAttribute('href'));\n                if (target) {\n                    target.scrollIntoView({\n                        behavior: 'smooth',\n                        block: 'start'\n                    });\n                }\n            });\n        });\n    </script>
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '-40% 0px -40% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    
+                    // Update mobile nav
+                    document.querySelectorAll('.mobile-nav .nav-item').forEach(item => {
+                        item.classList.remove('active');
+                        // Check if this item's onclick contains the section id
+                        if (item.getAttribute('onclick') && item.getAttribute('onclick').includes(`'${id}'`)) {
+                            item.classList.add('active');
+                        }
+                    });
+                    
+                    // Update desktop nav
+                    document.querySelectorAll('.desktop-nav .nav-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+        
+        // Handle desktop nav clicks
+        document.querySelectorAll('.desktop-nav .nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const sectionId = href.replace('#', '');
+                scrollToSection(sectionId, null);
+            });
+        });
+    </script>
 </body>
 </html>
