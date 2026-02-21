@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Elaichi Menu - Responsive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset and Base Variables */
+        :root {
+            --elaichi-green: #9ACD32;
+            --elaichi-dark: #2C2C2C;
+            --elaichi-gold: #D4AF37;
+            --elaichi-cream: #F5F5DC;
+            --elaichi-white: #FFFFFF;
+            --elaichi-black: #1a1a1a;
+            
+            /* Fluid spacing scale using clamp() */
+            --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+            --space-sm: clamp(0.75rem, 2vw, 1rem);
+            --space-md: clamp(1rem, 3vw, 1.5rem);
+            --space-lg: clamp(1.5rem, 4vw, 2.5rem);
+            --space-xl: clamp(2rem, 5vw, 4rem);
+            
+            /* Fluid typography using clamp() */
+            --text-xs: clamp(0.75rem, 1.5vw, 0.875rem);
+            --text-sm: clamp(0.875rem, 2vw, 1rem);
+            --text-base: clamp(1rem, 2.5vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 3vw, 1.5rem);
+            --text-xl: clamp(1.5rem, 4vw, 2.5rem);
+            --text-2xl: clamp(2rem, 5vw, 4rem);
+            --text-3xl: clamp(2.5rem, 6vw, 5rem);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--elaichi-black);
+            color: var(--elaichi-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Mobile Navigation - Bottom Fixed */
+        .mobile-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--elaichi-dark);
+            z-index: 1000;
+            padding: var(--space-xs) var(--space-sm);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid var(--elaichi-green);
+            padding-bottom: max(var(--space-xs), env(safe-area-inset-bottom));
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: rgba(255,255,255,0.7);
+            font-size: var(--text-xs);
+            padding: var(--space-xs);
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+            min-width: 0;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--elaichi-green);
+            transform: translateY(-2px);
+        }
+
+        .nav-icon {
+            font-size: clamp(1.25rem, 4vw, 1.5rem);
+            margin-bottom: 2px;
+        }
+
+        /* Hide mobile nav on desktop */
+        @media (min-width: 1024px) {
+            .mobile-nav { display: none; }
+        }
+
+        /* Desktop Side Navigation */
+        .desktop-nav {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: min(280px, 25vw);
+            background: var(--elaichi-dark);
+            z-index: 999;
+            padding: var(--space-lg);
+            overflow-y: auto;
+            border-right: 3px solid var(--elaichi-green);
+        }
+
+        @media (min-width: 1024px) {
+            .desktop-nav { display: block; }
+            body { padding-left: min(280px, 25vw); }
+        }
+
+        .nav-logo {
+            font-size: var(--text-2xl);
+            font-weight: 800;
+            color: var(--elaichi-green);
+            margin-bottom: var(--space-lg);
+            text-align: center;
+        }
+
+        .nav-section { margin-bottom: var(--space-md); }
+        
+        .nav-section-title {
+            color: var(--elaichi-gold);
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: var(--space-sm);
+            font-weight: 600;
+        }
+
+        .nav-link {
+            display: block;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            padding: var(--space-xs) 0;
+            font-size: var(--text-sm);
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            padding-left: var(--space-sm);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--elaichi-green);
+            border-left-color: var(--elaichi-green);
+            background: rgba(154, 205, 50, 0.1);
+            margin-left: calc(-1 * var(--space-sm));
+            padding-left: var(--space-md);
+        }
+
+        /* Page Container */
+        .page-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            padding-bottom: 80px; /* Space for mobile nav */
+        }
+
+        @media (min-width: 1024px) {
+            .page-container {
+                padding-bottom: 0;
+                max-width: 900px;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .page-container { max-width: 1100px; }
+        }
+
+        /* Section/Page Styling */
+        .section {
+            min-height: 100vh;
+            width: 100%;
+            padding: var(--space-lg) var(--space-md);
+            position: relative;
+            overflow: hidden;
+            padding-left: max(var(--space-md), env(safe-area-inset-left));
+            padding-right: max(var(--space-md), env(safe-area-inset-right));
+        }
+
+        @media (min-width: 768px) {
+            .section { padding: var(--space-xl); }
+        }
+
+        /* Cover Page */
+        .cover {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .cover-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            background: 
+                radial-gradient(circle at 20% 50%, var(--elaichi-green) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, var(--elaichi-gold) 0%, transparent 50%);
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 2;
+            padding: var(--space-md);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .cover-logo {
+            font-size: clamp(3rem, 15vw, 6rem);
+            font-weight: 800;
+            color: var(--elaichi-green);
+            letter-spacing: -0.05em;
+            line-height: 1;
+            margin-bottom: var(--space-md);
+            position: relative;
+            display: inline-block;
+        }
+
+        .cover-logo::after {
+            content: '.';
+            color: var(--elaichi-green);
+        }
+
+        .leaf {
+            position: absolute;
+            width: clamp(20px, 5vw, 40px);
+            height: clamp(20px, 5vw, 40px);
+            background: var(--elaichi-green);
+            border-radius: 0 100% 0 100%;
+            transform: rotate(-45deg);
+        }
+
+        .leaf-1 { top: -5%; right: 10%; }
+        .leaf-2 { top: 10%; right: -5%; transform: rotate(-30deg) scale(0.8); }
+
+        .tagline {
+            color: var(--elaichi-gold);
+            font-size: var(--text-lg);
+            letter-spacing: clamp(2px, 1vw, 4px);
+            text-transform: uppercase;
+            margin-bottom: var(--space-sm);
+            font-weight: 300;
+        }
+
+        .malabar-text {
+            color: rgba(255,255,255,0.6);
+            font-size: var(--text-sm);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            padding: 0 var(--space-sm);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.5);
+            font-size: var(--text-xs);
+            animation: bounce 2s infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Content Pages */
+        .content-page {
+            background: linear-gradient(to bottom, #f8fff0 0%, #ffffff 100%);
+        }
+
+        .page-header {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-md);
+            border-bottom: 3px solid var(--elaichi-green);
+        }
+
+        @media (min-width: 640px) {
+            .page-header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .header-logo {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--elaichi-green);
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-xl);
+            color: var(--elaichi-dark);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .page-title span {
+            color: var(--elaichi-green);
+            display: block;
+        }
+
+        @media (min-width: 640px) {
+            .page-title span { display: inline; }
+        }
+
+        /* Menu Grid System - Uses CSS Grid with auto-fit */
+        .menu-grid {
+            display: grid;
+            gap: var(--space-md);
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 640px) {
+            .menu-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .menu-grid { gap: var(--space-lg); }
+        }
+
+        .menu-section {
+            background: rgba(255,255,255,0.95);
+            padding: var(--space-md);
+            border-radius: clamp(12px, 3vw, 20px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--elaichi-green);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-lg);
+            color: var(--elaichi-green);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .section-icon {
+            width: clamp(32px, 8vw, 40px);
+            height: clamp(32px, 8vw, 40px);
+            background: var(--elaichi-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--text-base);
+            flex-shrink: 0;
+        }
+
+        /* Menu Items - Flexbox for responsive alignment */
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: var(--space-xs) 0;
+            border-bottom: 1px dashed rgba(0,0,0,0.1);
+            transition: all 0.2s;
+            gap: var(--space-sm);
+        }
+
+        .menu-item:hover {
+            background: rgba(154, 205, 50, 0.05);
+            padding-left: var(--space-xs);
+            border-radius: 6px;
+            margin: 0 calc(-1 * var(--space-xs));
+            padding-right: var(--space-xs);
+        }
+
+        .item-name {
+            font-weight: 500;
+            color: var(--elaichi-dark);
+            font-size: var(--text-sm);
+            flex: 1;
+            line-height: 1.4;
+            min-width: 0; /* Prevents overflow */
+        }
+
+        .item-price {
+            font-weight: 700;
+            color: var(--elaichi-green);
+            font-size: var(--text-base);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* Responsive grid for many items */
+        .auto-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xs);
+        }
+
+        @media (min-width: 480px) {
+            .auto-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 768px) {
+            .auto-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .auto-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        /* Full-width sections */
+        .fullwidth-mobile { grid-column: 1 / -1; }
+
+        /* Featured Items */
+        .featured-card {
+            background: linear-gradient(135deg, var(--elaichi-green) 0%, #7cb342 100%);
+            color: white;
+            padding: var(--space-md);
+            border-radius: clamp(12px, 3vw, 20px);
+            margin-bottom: var(--space-lg);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(154, 205, 50, 0.3);
+        }
+
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 150px;
+            height: 150px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .featured-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        @media (min-width: 640px) {
+            .featured-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .featured-title {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-xs);
+        }
+
+        .featured-desc {
+            font-size: var(--text-sm);
+            opacity: 0.9;
+        }
+
+        .featured-price {
+            font-size: var(--text-xl);
+            font-weight: 800;
+            margin-top: var(--space-sm);
+        }
+
+        @media (min-width: 640px) {
+            .featured-price { margin-top: 0; }
+        }
+
+        /* Dark Theme Pages */
+        .dark-page {
+            background: linear-gradient(to right, #2d2d2d 0%, #1a1a1a 100%);
+            color: white;
+        }
+
+        .dark-page .page-title { color: white; }
+        .dark-page .menu-section {
+            background: rgba(255,255,255,0.05);
+            border-left-color: var(--elaichi-gold);
+        }
+        .dark-page .section-title { color: var(--elaichi-gold); }
+        .dark-page .item-name { color: rgba(255,255,255,0.9); }
+        .dark-page .item-price { color: var(--elaichi-gold); }
+        .dark-page .menu-item { border-bottom-color: rgba(255,255,255,0.1); }
+
+        /* Food Categories */
+        .food-category {
+            background: white;
+            border-radius: clamp(16px, 4vw, 24px);
+            padding: var(--space-md);
+            margin-bottom: var(--space-md);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .food-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--elaichi-green), var(--elaichi-gold));
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .category-icon {
+            width: clamp(40px, 10vw, 50px);
+            height: clamp(40px, 10vw, 50px);
+            background: var(--elaichi-green);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-lg);
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-lg);
+            color: var(--elaichi-dark);
+        }
+
+        .items-grid {
+            display: grid;
+            gap: var(--space-sm);
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 480px) {
+            .items-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .food-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-sm);
+            background: rgba(154, 205, 50, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s;
+            gap: var(--space-sm);
+        }
+
+        .food-item:hover {
+            background: rgba(154, 205, 50, 0.1);
+            transform: translateX(4px);
+        }
+
+        .food-name {
+            font-weight: 500;
+            color: var(--elaichi-dark);
+            font-size: var(--text-sm);
+            line-height: 1.3;
+            flex: 1;
+        }
+
+        .food-price {
+            background: var(--elaichi-dark);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: var(--text-xs);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* Combo Cards - Responsive Grid */
+        .combo-grid {
+            display: grid;
+            gap: var(--space-md);
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 480px) {
+            .combo-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 768px) {
+            .combo-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .combo-card {
+            background: white;
+            border-radius: 16px;
+            padding: var(--space-md);
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .combo-card:hover {
+            border-color: var(--elaichi-green);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .combo-card.featured {
+            background: var(--elaichi-green);
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .combo-card.featured .combo-price { color: white; }
+        
+        .combo-card.featured::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: -8px;
+            right: 10px;
+            background: var(--elaichi-gold);
+            color: var(--elaichi-dark);
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: var(--text-xs);
+            font-weight: 700;
+        }
+
+        .combo-name {
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+            font-size: var(--text-base);
+            line-height: 1.3;
+        }
+
+        .combo-price {
+            font-size: var(--text-lg);
+            font-weight: 700;
+            color: var(--elaichi-green);
+        }
+
+        /* Malabar Specials Page */
+        .malabar-page {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+        }
+
+        .malabar-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .malabar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-2xl);
+            color: var(--elaichi-gold);
+            margin-bottom: var(--space-sm);
+        }
+
+        .malabar-subtitle {
+            color: rgba(255,255,255,0.6);
+            font-size: var(--text-sm);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .specials-grid {
+            display: grid;
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 640px) {
+            .specials-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .special-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: var(--space-md);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .special-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-4px);
+        }
+
+        .special-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--elaichi-gold);
+        }
+
+        .special-name {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-lg);
+            color: var(--elaichi-gold);
+            margin-bottom: var(--space-xs);
+        }
+
+        .special-desc {
+            color: rgba(255,255,255,0.7);
+            font-size: var(--text-sm);
+            margin-bottom: var(--space-sm);
+            line-height: 1.6;
+        }
+
+        .special-price {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--elaichi-green);
+        }
+
+        .traditional-grid {
+            display: grid;
+            gap: var(--space-md);
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: 640px) {
+            .traditional-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .trad-item {
+            background: rgba(154, 205, 50, 0.1);
+            padding: var(--space-md);
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(154, 205, 50, 0.3);
+            transition: all 0.3s;
+        }
+
+        .trad-item:hover {
+            background: rgba(154, 205, 50, 0.2);
+            transform: scale(1.02);
+        }
+
+        .trad-name {
+            color: var(--elaichi-green);
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+            font-size: var(--text-base);
+        }
+
+        .trad-price {
+            color: var(--elaichi-gold);
+            font-size: var(--text-lg);
+            font-weight: 700;
+        }
+
+        /* Back Cover */
+        .back-cover {
+            background: linear-gradient(135deg, var(--elaichi-green) 0%, #7cb342 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            padding: var(--space-xl) var(--space-md);
+        }
+
+        .back-cover::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .back-cover::after {
+            content: '';
+            position: absolute;
+            bottom: -5%;
+            left: -5%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        .back-logo {
+            font-size: var(--text-3xl);
+            font-weight: 800;
+            margin-bottom: var(--space-lg);
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: var(--space-lg);
+            border-radius: 24px;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .contact-title {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-md);
+        }
+
+        .contact-details {
+            font-size: var(--text-base);
+            line-height: 2;
+            opacity: 0.95;
+        }
+
+        .contact-details p { margin-bottom: var(--space-xs); }
+
+        .social-links {
+            margin-top: var(--space-lg);
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: clamp(48px, 12vw, 56px);
+            height: clamp(48px, 12vw, 56px);
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-lg);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+        }
+
+        .social-icon:hover {
+            background: white;
+            color: var(--elaichi-green);
+            transform: translateY(-4px) scale(1.1);
+        }
+
+        .footer-text {
+            margin-top: var(--space-xl);
+            font-size: var(--text-xs);
+            opacity: 0.8;
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            padding: 0 var(--space-sm);
+        }
+
+        /* Utility Classes */
+        .highlight-box {
+            background: linear-gradient(90deg, rgba(154,205,50,0.1), rgba(212,175,55,0.1));
+            padding: var(--space-md);
+            border-radius: 16px;
+            margin-top: var(--space-lg);
+            text-align: center;
+            border: 1px solid rgba(154,205,50,0.2);
+        }
+
+        .dark-page .highlight-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        /* Print Styles */
+        @media print {
+            .mobile-nav, .desktop-nav { display: none !important; }
+            
+            body {
+                padding-left: 0 !important;
+                background: white;
+            }
+            
+            .section {
+                min-height: auto;
+                page-break-after: always;
+                padding: 20px;
+            }
+            
+            .page-container {
+                padding-bottom: 0;
+                max-width: 100%;
+            }
+            
+            .menu-section, .food-category, .combo-card, .special-card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Touch Device Optimizations */
+        @media (hover: none) {
+            .menu-item:hover, .food-item:hover, .combo-card:hover {
+                transform: none;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+        <div class="nav-logo">elaichi.</div>
+        <div class="nav-section">
+            <div class="nav-section-title">Menu</div>
+            <a href="#cover" class="nav-link active">Home</a>
+            <a href="#juices" class="nav-link">Fresh Juices</a>
+            <a href="#shakes" class="nav-link">Shakes & Falooda</a>
+            <a href="#hot" class="nav-link">Hot Beverages</a>
+            <a href="#snacks" class="nav-link">Snacks</a>
+            <a href="#meals" class="nav-link">Burgers & Wraps</a>
+            <a href="#malabar" class="nav-link">Malabar Specials</a>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-title">Contact</div>
+            <a href="#contact" class="nav-link">Visit Us</a>
+        </div>
+    </nav>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+        <a href="#cover" class="nav-item active">
+            <span class="nav-icon">🏠</span>
+            <span>Home</span>
+        </a>
+        <a href="#juices" class="nav-item">
+            <span class="nav-icon">🧃</span>
+            <span>Juices</span>
+        </a>
+        <a href="#shakes" class="nav-item">
+            <span class="nav-icon">🥤</span>
+            <span>Shakes</span>
+        </a>
+        <a href="#snacks" class="nav-item">
+            <span class="nav-icon">🍟</span>
+            <span>Snacks</span>
+        </a>
+        <a href="#meals" class="nav-item">
+            <span class="nav-icon">🍔</span>
+            <span>Meals</span>
+        </a>
+    </nav>
+
+    <main class="page-container">
+
+        <!-- Page 1: Cover -->
+        <section id="cover" class="section cover">
+            <div class="cover-bg"></div>
+            <div class="cover-content">
+                <div class="cover-logo">
+                    elaichi
+                    <div class="leaf leaf-1"></div>
+                    <div class="leaf leaf-2"></div>
+                </div>
+                <div class="tagline">Taste of Malabar</div>
+                <div class="malabar-text">
+                    Authentic flavors from the Malabar coast • Fresh juices, traditional snacks, 
+                    and Malabar specialties served with love
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll to explore</span>
+                <span>↓</span>
+            </div>
+        </section>
+
+        <!-- Page 2: Fresh Juices -->
+        <section id="juices" class="section content-page">
+            <div class="page-header">
+                <div class="header-logo">elaichi</div>
+                <h1 class="page-title">Fresh <span>Juices</span> & Lime</h1>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-section">
+                    <div class="section-title">
+                        <div class="section-icon">🍋</div>
+                        Lime Juices
+                    </div>
+                    <div class="menu-list">
+                        <div class="menu-item"><span class="item-name">Fresh Lime</span><span class="item-price">₹20</span></div>
+                        <div class="menu-item"><span class="item-name">Grape Lime</span><span class="item-price">₹25</span></div>
+                        <div class="menu-item"><span class="item-name">Pineapple Lime</span><span class="item-price">₹25</span></div>
+                        <div class="menu-item"><span class="item-name">Mint Lime</span><span class="item-price">₹30</span></div>
+                        <div class="menu-item"><span class="item-name">Ginger Lime</span><span class="item-price">₹25</span></div>
+                        <div class="menu-item"><span class="item-name">Blue Lime</span><span class="item-price">₹20</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-section">
+                    <div class="section-title">
+                        <div class="section-icon">🥤</div>
+                        Soda Specials
+                    </div>
+                    <div class="menu-list">
+                        <div class="menu-item"><span class="item-name">Lime Soda</span><span class="item-price">₹25</span></div>
+                        <div class="menu-item"><span class="item-name">Chilly Soda</span><span class="item-price">₹30</span></div>
+                        <div class="menu-item"><span class="item-name">Masala Soda</span><span class="item-price">₹30</span></div>
+                        <div class="menu-item"><span class="item-name">Ginger Soda</span><span class="item-price">₹30</span></div>
+                        <div class="menu-item"><span class="item-name">Mint Lime Soda</span><span class="item-price">₹30</span></div>
+                        <div class="menu-item"><span class="item-name">Nellikka Kanthari</span><span class="item-price">₹35</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-section fullwidth-mobile">
+                    <div class="section-title">
+                        <div class="section-icon">🍊</div>
+                        Fresh Fruit Juices
+                    </div>
+                    <div class="menu-list auto-grid">
+                        <div class="menu-item"><span class="item-name">Musambi</span><span class="item-price">₹45</span></div>
+                        <div class="menu-item"><span class="item-name">Orange</span><span class="item-price">₹50</span></div>
+                        <div class="menu-item"><span class="item-name">Pineapple</span><span class="item-price">₹40</span></div>
+                        <div class="menu-item"><span class="item-name">Watermelon</span><span class="item-price">₹40</span></div>
+                        <div class="menu-item"><span class="item-name">Pomegranate</span><span class="item-price">₹50</span></div>
+                        <div class="menu-item"><span class="item-name">Papaya</span><span class="item-price">₹50</span></div>
+                        <div class="menu-item"><span class="item-name">Banana</span><span class="item-price">₹50</span></div>
+                        <div class="menu-item"><span class="item-name">Apple</span><span class="item-price">₹50</span></div>
+                        <div class="menu-item"><span class="item-name">Mango</span><span class="item-price">₹60</span></div>
+                        <div class="menu-item"><span class="item-name">Dragon Fruit</span><span class="item-price">₹50</span></div>
+                        <div class="menu-item"><span class="item-name">Grapes</span><span class="item-price">₹45</span></div>
+                        <div class="menu-item"><span class="item-name">Chikku</span><span class="item-price">₹40</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 3: Shakes & Falooda -->
+        <section id="shakes" class="section content-page">
+            <div class="page-header">
+                <div class="header-logo">elaichi</div>
+                <h1 class="page-title">Shakes, <span>Falooda</span> & More</h1>
+            </div>
+
+            <div class="featured-card">
+                <div class="featured-content">
+                    <div>
+                        <div class="featured-title">Elaichi Special Falooda</div>
+                        <div class="featured-desc">Our signature blend with premium ingredients</div>
+                    </div>
+                    <div class="featured-price">₹160</div>
+                </div>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-section">
+                    <div class="section-title"><div class="section-icon">🥛</div>Falooda Varieties</div>
+                    <div class="menu-list">
+                        <div class="menu-item"><span class="item-name">Normal Falooda</span><span class="item-price">₹100</span></div>
+                        <div class="menu-item"><span class="item-name">Royal Falooda</span><span class="item-price">₹120</span></div>
+                        <div class="menu-item"><span class="item-name">Arabian Falooda</span><span class="item-price">₹140</span></div>
+                        <div class="menu-item"><span class="item-name">Special Falooda</span><span class="item-price">₹150</span></div>
+                        <div class="menu-item"><span class="item-name">Butter Scotch/Black Currant/Strawberry</span><span class="item-price">₹100-150</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-section">
+                    <div class="section-title"><div class="section-icon">🥤</div>Signature Shakes</div>
+                    <div class="menu-list">
+                        <div class="menu-item"><span class="item-name">Oreo / Oreo Monster</span><span class="item-price">₹60/70</span></div>
+                        <div class="menu-item"><span class="item-name">Snickers / KitKat</span><span class="item-price">₹70</span></div>
+                        <div class="menu-item"><span class="item-name">Nutella / Brownie</span><span class="item-price">₹80</span></div>
+                        <div class="menu-item"><span class="item-name">Peanut Butter / Dairy Milk</span><span class="item-price">₹70</span></div>
+                        <div class="menu-item"><span class="item-name">Ice Cream Shakes (All)</span><span class="item-price">₹80</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-section">
+                    <div class="section-title"><div class="section-icon">🍹</div>Fresh Shakes</div>
+                    <div class="menu-list">
+                        <div class="menu-item"><span class="item-name">Butter Fruit</span><span class="item-price">₹60</span></div>
+                        <div class="menu-item"><span class="item-name">Anjeer / Apple / Banana</span><span class="item-price">₹60</span></div>
+                        <div class="menu-item"><span class="item-name">Chikku / Papaya / Mango</span><span class="item-price">₹60</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-section">
+                    <div class="section-title"><div class="section-icon">🥗</div>Salads & Bowls</div>
+                    <div class="menu-list">
+                        <div class="menu-item"><span class="item-name">Gudbud</span><span class="item-price">₹120</span></div>
+                        <div class="menu-item"><span class="item-name">Fruit Bowl</span><span class="item-price">₹60</span></div>
+                        <div class="menu-item"><span class="item-name">Nutrition Bowl</span><span class="item-price">₹70</span></div>
+                        <div class="menu-item"><span class="item-name">Fruit Salad with Ice Cream/Custard</span><span class="item-price">₹70</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <div style="font-weight: 700; color: var(--elaichi-green); font-size: var(--text-base); margin-bottom: var(--space-xs);">Mixed Juices</div>
+                <div style="color: #666; font-size: var(--text-sm); margin-bottom: var(--space-xs);">ABC, PB, Mixed Fruit, Bright Orange, Sunshine, Summer Dreams, Strawberry Banana, Strawberry Apple</div>
+                <div style="font-weight: 700; color: var(--elaichi-dark); font-size: var(--text-lg);">₹60 each</div>
+            </div>
+        </section>
+
+        <!-- Page 4: Hot Beverages -->
+        <section id="hot" class="section dark-page">
+            <div class="page-header">
+                <div class="header-logo" style="color: var(--elaichi-green);">elaichi</div>
+                <h1 class="page-title">Hot <span style="color: var(--elaichi-gold);">Beverages</span> & Mojitos</h1>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-section">
+                    <div class="section-title"><div class="section-icon" style="background: var(--elaichi-gold);">☕</div>Hot Beverages</div>
+                    <div class="menu-list">
+                        <div class="menu-item"><span class="item-name">Tea</span><span class="item-price">₹12</span></div>
+                        <div class="menu-item"><span class="item-name">Coffee</span><span class="item-price">₹15</span></div>
+                        <div class="menu-item"><span class="item-name">Lemon Tea / Ginger Tea</span><span class="item-price">₹15</span></div>
+                        <div class="menu-item"><span class="item-name">Green Tea</span><span class="item-price">₹15</span></div>
+                        <div class="menu-item"><span class="item-name">Horlicks / Boost</span><span class="item-price">₹15</span></div>
+                        <div class="menu-item"><span class="item-name">Badam Milk (Hot)</span><span class="item-price">₹15</span></div>
+                        <div class="menu-item"><span class="item-name">Pepper Milk</span><span class="item-price">₹20</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-section">
+                    <div class="section-title"><div class="section-icon" style="background: var(--elaichi-gold);">🧊</div>Cold Milk Drinks</div>
+                    <div class="menu-list">
+                        <div class="menu-item"><span class="item-name">Cold Coffee</span><span class="item-price">₹60</span></div>
+                        <div class="menu-item"><span class="item-name">Cold Boost / Cold Horlicks</span><span class="item-price">₹50</span></div>
+                        <div class="menu-item"><span class="item-name">Badam Milk (Cold)</span><span class="item-price">₹40</span></div>
+                        <div class="menu-item"><span class="item-name">Rose Milk</span><span class="item-price">₹40</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-section fullwidth-mobile">
+                    <div class="section-title"><div class="section-icon" style="background: var(--elaichi-gold);">🍃</div>Mojitos - Refreshing & Cool</div>
+                    <div class="menu-list auto-grid">
+                        <div class="menu-item"><span class="item-name">Blue Curacao</span><span class="item-price">₹60</span></div>
+                        <div class="menu-item"><span class="item-name">Mint Lime</span><span class="item-price">₹60</span></div>
+                        <div class="menu-item"><span class="item-name">Green Apple</span><span class="item-price">₹60</span></div>
+                        <div class="menu-item"><span class="item-name">Blue Berry</span><span class="item-price">₹60</span></div>
+                        <div class="menu-item"><span class="item-name">Black Current</span><span class="item-price">₹60</span></div>
+                        <div class="menu-item"><span class="item-name">Strawberry</span><span class="item-price">₹60</span></div>
+                        <div class="menu-item"><span class="item-name">Litchi / Mango / Orange</span><span class="item-price">₹60</span></div>
+                        <div class="menu-item"><span class="item-name">Kiwi / Passion Fruit</span><span class="item-price">₹70</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="text-align: center; margin-top: var(--space-lg);">
+                <span style="color: var(--elaichi-gold); font-weight: 600; font-size: var(--text-lg);">🌟 Elaichi Cocktail Special - ₹70</span>
+            </div>
+        </section>
+
+        <!-- Page 5: Snacks -->
+        <section id="snacks" class="section content-page">
+            <div class="page-header">
+                <div class="header-logo">elaichi</div>
+                <h1 class="page-title">Snacks & <span>Starters</span></h1>
+            </div>
+
+            <div class="food-category">
+                <div class="category-header"><div class="category-icon">🍟</div><div class="category-title">Fries & Crispy</div></div>
+                <div class="items-grid">
+                    <div class="food-item"><span class="food-name">French Fries</span><span class="food-price">₹70</span></div>
+                    <div class="food-item"><span class="food-name">Cheese Fries</span><span class="food-price">₹90</span></div>
+                    <div class="food-item"><span class="food-name">Masala Fries</span><span class="food-price">₹80-90</span></div>
+                    <div class="food-item"><span class="food-name">Peri Peri Fries</span><span class="food-price">₹129</span></div>
+                </div>
+            </div>
+
+            <div class="food-category">
+                <div class="category-header"><div class="category-icon">🍗</div><div class="category-title">Chicken Starters</div></div>
+                <div class="items-grid">
+                    <div class="food-item"><span class="food-name">Lolly Pop (4PC)</span><span class="food-price">₹129</span></div>
+                    <div class="food-item"><span class="food-name">Lolly Pop (8PC)</span><span class="food-price">₹259</span></div>
+                    <div class="food-item"><span class="food-name">Strips (4PC)</span><span class="food-price">₹129</span></div>
+                    <div class="food-item"><span class="food-name">Strips (8PC)</span><span class="food-price">₹259</span></div>
+                    <div class="food-item"><span class="food-name">Pops (M)</span><span class="food-price">₹119</span></div>
+                    <div class="food-item"><span class="food-name">Pops (L)</span><span class="food-price">₹179</span></div>
+                    <div class="food-item"><span class="food-name">Chicken Momos</span><span class="food-price">₹170</span></div>
+                </div>
+            </div>
+
+            <div class="food-category">
+                <div class="category-header"><div class="category-icon">🥟</div><div class="category-title">Veg Starters & Momos</div></div>
+                <div class="items-grid">
+                    <div class="food-item"><span class="food-name">Veg Momos</span><span class="food-price">₹60</span></div>
+                    <div class="food-item"><span class="food-name">Paneer Momos</span><span class="food-price">₹100</span></div>
+                </div>
+            </div>
+
+            <div class="food-category">
+                <div class="category-header"><div class="category-icon">🍜</div><div class="category-title">Maggi Noodles</div></div>
+                <div class="items-grid">
+                    <div class="food-item"><span class="food-name">Plain Maggi</span><span class="food-price">₹30</span></div>
+                    <div class="food-item"><span class="food-name">Veg Maggi</span><span class="food-price">₹35-60</span></div>
+                    <div class="food-item"><span class="food-name">Egg Maggi</span><span class="food-price">₹40</span></div>
+                    <div class="food-item"><span class="food-name">Chicken Maggi</span><span class="food-price">₹50-80</span></div>
+                    <div class="food-item"><span class="food-name">Masala Maggi</span><span class="food-price">₹60-80</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 6: Burgers & Wraps -->
+        <section id="meals" class="section content-page">
+            <div class="page-header">
+                <div class="header-logo">elaichi</div>
+                <h1 class="page-title">Burgers, <span>Sandwiches</span> & Wraps</h1>
+            </div>
+
+            <div class="featured-card" style="background: linear-gradient(135deg, var(--elaichi-dark) 0%, #1a1a1a 100%);">
+                <div class="featured-content">
+                    <div>
+                        <div class="featured-title">Zinger Double</div>
+                        <div class="featured-desc">Double the crunch, double the taste</div>
+                    </div>
+                    <div class="featured-price">₹150</div>
+                </div>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-section">
+                    <div class="section-title"><div class="section-icon">🍔</div>Burgers</div>
+                    <div class="menu-list">
+                        <div class="menu-item"><span class="item-name">Chicken Steak</span><span class="item-price">₹140</span></div>
+                        <div class="menu-item"><span class="item-name">Mexican Burger</span><span class="item-price">₹120</span></div>
+                        <div class="menu-item"><span class="item-name">Chicken Tikka / Crispy</span><span class="item-price">₹120</span></div>
+                        <div class="menu-item"><span class="item-name">Veggie / Paneer Tikka</span><span class="item-price">₹80-90</span></div>
+                        <div class="menu-item"><span class="item-name">Slider (V)</span><span class="item-price">₹80</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-section">
+                    <div class="section-title"><div class="section-icon">🌯</div>Wraps</div>
+                    <div class="menu-list">
+                        <div class="menu-item"><span class="item-name">Chicken Crispy Wrap</span><span class="item-price">₹100</span></div>
+                        <div class="menu-item"><span class="item-name">Chicken Tikka Wrap</span><span class="item-price">₹100</span></div>
+                        <div class="menu-item"><span class="item-name">Mexican Wrap</span><span class="item-price">₹110</span></div>
+                        <div class="menu-item"><span class="item-name">Falafel / Veg Wrap</span><span class="item-price">₹90</span></div>
+                        <div class="menu-item"><span class="item-name">Paneer Wrap</span><span class="item-price">₹100</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-section" style="margin-top: var(--space-lg);">
+                <div class="section-title"><div class="section-icon">🥪</div>Sandwiches & Clubs</div>
+                <div class="combo-grid">
+                    <div class="combo-card"><div class="combo-name">Veg Sandwich</div><div class="combo-price">₹50-90</div></div>
+                    <div class="combo-card"><div class="combo-name">Egg Sandwich</div><div class="combo-price">₹60-80</div></div>
+                    <div class="combo-card featured"><div class="combo-name">Chicken Sandwich</div><div class="combo-price">₹80-120</div></div>
+                    <div class="combo-card"><div class="combo-name">Paneer Sandwich</div><div class="combo-price">₹80-100</div></div>
+                    <div class="combo-card"><div class="combo-name">Sweet Corn</div><div class="combo-price">₹80</div></div>
+                    <div class="combo-card"><div class="combo-name">Arabian Club Chicken</div><div class="combo-price">₹120</div></div>
+                    <div class="combo-card"><div class="combo-name">Mexican Club</div><div class="combo-price">₹120</div></div>
+                    <div class="combo-card"><div class="combo-name">Classic Club</div><div class="combo-price">₹110</div></div>
+                    <div class="combo-card featured"><div class="combo-name">Veg Club / Paneer Club</div><div class="combo-price">₹90-100</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 7: Malabar Specials -->
+        <section id="malabar" class="section malabar-page">
+            <div class="malabar-header">
+                <div class="malabar-title">Malabar Specialties</div>
+                <div class="malabar-subtitle">Authentic Coastal Flavors</div>
+            </div>
+
+            <div class="specials-grid">
+                <div class="special-card">
+                    <div class="special-name">Avil Milk</div>
+                    <div class="special-desc">Traditional Malabar beaten rice milkshake with banana and nuts</div>
+                    <div class="special-price">₹60</div>
+                </div>
+                <div class="special-card">
+                    <div class="special-name">Avil Milk Special</div>
+                    <div class="special-desc">Loaded with extra dry fruits and premium ingredients</div>
+                    <div class="special-price">₹90</div>
+                </div>
+                <div class="special-card">
+                    <div class="special-name">Avil Milk Pista</div>
+                    <div class="special-desc">Rich pistachio flavored traditional avil milk</div>
+                    <div class="special-price">₹70</div>
+                </div>
+                <div class="special-card">
+                    <div class="special-name">Avil Milk Strawberry</div>
+                    <div class="special-desc">Fresh strawberry twist on the classic Malabar drink</div>
+                    <div class="special-price">₹70</div>
+                </div>
+            </div>
+
+            <div style="background: rgba(154, 205, 50, 0.1); padding: var(--space-lg); border-radius: 20px; border: 2px solid var(--elaichi-green); text-align: center; margin-bottom: var(--space-lg);">
+                <div style="font-family: 'Playfair Display', serif; font-size: var(--text-xl); color: var(--elaichi-green); margin-bottom: var(--space-sm);">Smoothies</div>
+                <div style="color: rgba(255,255,255,0.8); margin-bottom: var(--space-sm);">Banana • Mango • Dates</div>
+                <div style="font-size: var(--text-2xl); font-weight: 700; color: var(--elaichi-gold);">₹80 each</div>
+            </div>
+
+            <div class="traditional-grid">
+                <div class="trad-item"><div class="trad-name">Chocolate</div><div class="trad-price">₹70</div></div>
+                <div class="trad-item"><div class="trad-name">Vanilla</div><div class="trad-price">₹70</div></div>
+                <div class="trad-item"><div class="trad-name">Butter Scotch</div><div class="trad-price">₹70</div></div>
+            </div>
+
+            <div style="margin-top: var(--space-xl); text-align: center; padding: var(--space-md); background: rgba(212, 175, 55, 0.1); border-radius: 15px;">
+                <div style="color: var(--elaichi-gold); font-size: var(--text-base); font-weight: 600; margin-bottom: var(--space-xs);">Also Serving Traditional Malabar Snacks</div>
+                <div style="color: rgba(255,255,255,0.7); font-size: var(--text-sm);">Pazhampori • Samosa • Bajji • Local Specialties</div>
+            </div>
+        </section>
+
+        <!-- Page 8: Contact -->
+        <section id="contact" class="section back-cover">
+            <div class="back-logo">elaichi.</div>
+            <div class="contact-card">
+                <div class="contact-title">Visit Us</div>
+                <div class="contact-details">
+                    <p>📍 Malabar's Finest Tea & Snack House</p>
+                    <p>🕒 Open Daily: 7:00 AM - 10:00 PM</p>
+                    <p>📞 Contact: Available at counter</p>
+                    <p>✉️ elaichi@restaurant.com</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-icon" aria-label="Facebook">📘</a>
+                    <a href="#" class="social-icon" aria-label="Instagram">📸</a>
+                    <a href="#" class="social-icon" aria-label="Twitter">🐦</a>
+                    <a href="#" class="social-icon" aria-label="WhatsApp">📱</a>
+                </div>
+            </div>
+            <div class="footer-text">
+                <p>Authentic Malabar Flavors • Fresh Ingredients • Made with Love</p>
+                <p style="margin-top: 10px; font-size: 0.8rem;">Prices subject to change • All items subject to availability</p>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Active navigation highlighting based on scroll position
+        const sections = document.querySelectorAll('.section');
+        const navItems = document.querySelectorAll('.nav-item, .nav-link');
+n\n        // Intersection Observer for active section detection\n        const observerOptions = {\n            root: null,\n            rootMargin: '-50% 0px -50% 0px',\n            threshold: 0\n        };\n\n        const observer = new IntersectionObserver((entries) => {\n            entries.forEach(entry => {\n                if (entry.isIntersecting) {\n                    const id = entry.target.getAttribute('id');\n                    navItems.forEach(item => {\n                        item.classList.remove('active');\n                        if (item.getAttribute('href') === `#${id}`) {\n                            item.classList.add('active');\n                        }\n                    });\n                }\n            });\n        }, observerOptions);\n\n        sections.forEach(section => observer.observe(section));\n\n        // Smooth scroll polyfill for Safari\n        document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {\n            anchor.addEventListener('click', function (e) {\n                e.preventDefault();\n                const target = document.querySelector(this.getAttribute('href'));\n                if (target) {\n                    target.scrollIntoView({\n                        behavior: 'smooth',\n                        block: 'start'\n                    });\n                }\n            });\n        });\n    </script>
+</body>
+</html>
