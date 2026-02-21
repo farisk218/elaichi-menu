@@ -1,0 +1,287 @@
+{
+  "juices": {
+    "title": "Fresh Juices & Lime",
+    "sections": [
+      {
+        "icon": "🍋",
+        "title": "Lime Juices",
+        "items": [
+          { "name": "Fresh Lime", "price": "₹20" },
+          { "name": "Grape Lime", "price": "₹25" },
+          { "name": "Pineapple Lime", "price": "₹25" },
+          { "name": "Mint Lime", "price": "₹30" },
+          { "name": "Ginger Lime", "price": "₹25" },
+          { "name": "Blue Lime", "price": "₹20" }
+        ]
+      },
+      {
+        "icon": "🥤",
+        "title": "Soda Specials",
+        "items": [
+          { "name": "Lime Soda", "price": "₹25" },
+          { "name": "Chilly Soda", "price": "₹30" },
+          { "name": "Masala Soda", "price": "₹30" },
+          { "name": "Ginger Soda", "price": "₹30" },
+          { "name": "Mint Lime Soda", "price": "₹30" },
+          { "name": "Nellikka Kanthari", "price": "₹35" }
+        ]
+      },
+      {
+        "icon": "🍊",
+        "title": "Fresh Fruit Juices",
+        "autoGrid": true,
+        "items": [
+          { "name": "Musambi", "price": "₹45" },
+          { "name": "Orange", "price": "₹50" },
+          { "name": "Pineapple", "price": "₹40" },
+          { "name": "Watermelon", "price": "₹40" },
+          { "name": "Pomegranate", "price": "₹50" },
+          { "name": "Papaya", "price": "₹50" },
+          { "name": "Banana", "price": "₹50" },
+          { "name": "Apple", "price": "₹50" },
+          { "name": "Mango", "price": "₹60" },
+          { "name": "Dragon Fruit", "price": "₹50" },
+          { "name": "Grapes", "price": "₹45" },
+          { "name": "Chikku", "price": "₹40" }
+        ]
+      }
+    ]
+  },
+  "shakes": {
+    "title": "Shakes, Falooda & More",
+    "featured": {
+      "title": "Elaichi Special Falooda",
+      "desc": "Our signature blend with premium ingredients",
+      "price": "₹160"
+    },
+    "sections": [
+      {
+        "icon": "🥛",
+        "title": "Falooda Varieties",
+        "items": [
+          { "name": "Normal Falooda", "price": "₹100" },
+          { "name": "Royal Falooda", "price": "₹120" },
+          { "name": "Arabian Falooda", "price": "₹140" },
+          { "name": "Special Falooda", "price": "₹150" },
+          { "name": "Butter Scotch/Black Currant/Strawberry", "price": "₹100-150" }
+        ]
+      },
+      {
+        "icon": "🥤",
+        "title": "Signature Shakes",
+        "items": [
+          { "name": "Oreo / Oreo Monster", "price": "₹60/70" },
+          { "name": "Snickers / KitKat", "price": "₹70" },
+          { "name": "Nutella / Brownie", "price": "₹80" },
+          { "name": "Peanut Butter / Dairy Milk", "price": "₹70" },
+          { "name": "Ice Cream Shakes (All)", "price": "₹80" }
+        ]
+      },
+      {
+        "icon": "🍹",
+        "title": "Fresh Shakes",
+        "items": [
+          { "name": "Butter Fruit", "price": "₹60" },
+          { "name": "Anjeer / Apple / Banana", "price": "₹60" },
+          { "name": "Chikku / Papaya / Mango", "price": "₹60" }
+        ]
+      },
+      {
+        "icon": "🥗",
+        "title": "Salads & Bowls",
+        "items": [
+          { "name": "Gudbud", "price": "₹120" },
+          { "name": "Fruit Bowl", "price": "₹60" },
+          { "name": "Nutrition Bowl", "price": "₹70" },
+          { "name": "Fruit Salad with Ice Cream/Custard", "price": "₹70" }
+        ]
+      }
+    ],
+    "highlight": {
+      "title": "Mixed Juices",
+      "desc": "ABC, PB, Mixed Fruit, Bright Orange, Sunshine, Summer Dreams, Strawberry Banana, Strawberry Apple",
+      "price": "₹60 each"
+    }
+  },
+  "hot": {
+    "title": "Hot Beverages & Mojitos",
+    "dark": true,
+    "sections": [
+      {
+        "icon": "☕",
+        "iconStyle": "gold",
+        "title": "Hot Beverages",
+        "items": [
+          { "name": "Tea", "price": "₹12" },
+          { "name": "Coffee", "price": "₹15" },
+          { "name": "Lemon Tea / Ginger Tea", "price": "₹15" },
+          { "name": "Green Tea", "price": "₹15" },
+          { "name": "Horlicks / Boost", "price": "₹15" },
+          { "name": "Badam Milk (Hot)", "price": "₹15" },
+          { "name": "Pepper Milk", "price": "₹20" }
+        ]
+      },
+      {
+        "icon": "🧊",
+        "iconStyle": "gold",
+        "title": "Cold Milk Drinks",
+        "items": [
+          { "name": "Cold Coffee", "price": "₹60" },
+          { "name": "Cold Boost / Cold Horlicks", "price": "₹50" },
+          { "name": "Badam Milk (Cold)", "price": "₹40" },
+          { "name": "Rose Milk", "price": "₹40" }
+        ]
+      },
+      {
+        "icon": "🍃",
+        "iconStyle": "gold",
+        "title": "Mojitos - Refreshing & Cool",
+        "autoGrid": true,
+        "items": [
+          { "name": "Blue Curacao", "price": "₹60" },
+          { "name": "Mint Lime", "price": "₹60" },
+          { "name": "Green Apple", "price": "₹60" },
+          { "name": "Blue Berry", "price": "₹60" },
+          { "name": "Black Current", "price": "₹60" },
+          { "name": "Strawberry", "price": "₹60" },
+          { "name": "Litchi / Mango / Orange", "price": "₹60" },
+          { "name": "Kiwi / Passion Fruit", "price": "₹70" }
+        ]
+      }
+    ],
+    "highlight": "🌟 Elaichi Cocktail Special - ₹70"
+  },
+  "snacks": {
+    "title": "Snacks & Starters",
+    "categories": [
+      {
+        "icon": "🍟",
+        "title": "Fries & Crispy",
+        "items": [
+          { "name": "French Fries", "price": "₹70" },
+          { "name": "Cheese Fries", "price": "₹90" },
+          { "name": "Masala Fries", "price": "₹80-90" },
+          { "name": "Peri Peri Fries", "price": "₹129" }
+        ]
+      },
+      {
+        "icon": "🍗",
+        "title": "Chicken Starters",
+        "items": [
+          { "name": "Lolly Pop (4PC)", "price": "₹129" },
+          { "name": "Lolly Pop (8PC)", "price": "₹259" },
+          { "name": "Strips (4PC)", "price": "₹129" },
+          { "name": "Strips (8PC)", "price": "₹259" },
+          { "name": "Pops (M)", "price": "₹119" },
+          { "name": "Pops (L)", "price": "₹179" },
+          { "name": "Chicken Momos", "price": "₹170" }
+        ]
+      },
+      {
+        "icon": "🥟",
+        "title": "Veg Starters & Momos",
+        "items": [
+          { "name": "Veg Momos", "price": "₹60" },
+          { "name": "Paneer Momos", "price": "₹100" }
+        ]
+      },
+      {
+        "icon": "🍜",
+        "title": "Maggi Noodles",
+        "items": [
+          { "name": "Plain Maggi", "price": "₹30" },
+          { "name": "Veg Maggi", "price": "₹35-60" },
+          { "name": "Egg Maggi", "price": "₹40" },
+          { "name": "Chicken Maggi", "price": "₹50-80" },
+          { "name": "Masala Maggi", "price": "₹60-80" }
+        ]
+      }
+    ]
+  },
+  "meals": {
+    "title": "Burgers, Sandwiches & Wraps",
+    "featured": {
+      "title": "Zinger Double",
+      "desc": "Double the crunch, double the taste",
+      "price": "₹150",
+      "dark": true
+    },
+    "sections": [
+      {
+        "icon": "🍔",
+        "title": "Burgers",
+        "items": [
+          { "name": "Chicken Steak", "price": "₹140" },
+          { "name": "Mexican Burger", "price": "₹120" },
+          { "name": "Chicken Tikka / Crispy", "price": "₹120" },
+          { "name": "Veggie / Paneer Tikka", "price": "₹80-90" },
+          { "name": "Slider (V)", "price": "₹80" }
+        ]
+      },
+      {
+        "icon": "🌯",
+        "title": "Wraps",
+        "items": [
+          { "name": "Chicken Crispy Wrap", "price": "₹100" },
+          { "name": "Chicken Tikka Wrap", "price": "₹100" },
+          { "name": "Mexican Wrap", "price": "₹110" },
+          { "name": "Falafel / Veg Wrap", "price": "₹90" },
+          { "name": "Paneer Wrap", "price": "₹100" }
+        ]
+      }
+    ],
+    "comboSection": {
+      "icon": "🥪",
+      "title": "Sandwiches & Clubs",
+      "items": [
+        { "name": "Veg Sandwich", "price": "₹50-90" },
+        { "name": "Egg Sandwich", "price": "₹60-80" },
+        { "name": "Chicken Sandwich", "price": "₹80-120", "featured": true },
+        { "name": "Paneer Sandwich", "price": "₹80-100" },
+        { "name": "Sweet Corn", "price": "₹80" },
+        { "name": "Arabian Club Chicken", "price": "₹120" },
+        { "name": "Mexican Club", "price": "₹120" },
+        { "name": "Classic Club", "price": "₹110" },
+        { "name": "Veg Club / Paneer Club", "price": "₹90-100", "featured": true }
+      ]
+    }
+  },
+  "malabar": {
+    "specials": [
+      {
+        "name": "Avil Milk",
+        "desc": "Traditional Malabar beaten rice milkshake with banana and nuts",
+        "price": "₹60"
+      },
+      {
+        "name": "Avil Milk Special",
+        "desc": "Loaded with extra dry fruits and premium ingredients",
+        "price": "₹90"
+      },
+      {
+        "name": "Avil Milk Pista",
+        "desc": "Rich pistachio flavored traditional avil milk",
+        "price": "₹70"
+      },
+      {
+        "name": "Avil Milk Strawberry",
+        "desc": "Fresh strawberry twist on the classic Malabar drink",
+        "price": "₹70"
+      }
+    ],
+    "smoothies": {
+      "title": "Smoothies",
+      "items": "Banana • Mango • Dates",
+      "price": "₹80 each"
+    },
+    "traditional": [
+      { "name": "Chocolate", "price": "₹70" },
+      { "name": "Vanilla", "price": "₹70" },
+      { "name": "Butter Scotch", "price": "₹70" }
+    ],
+    "snacksNote": {
+      "title": "Also Serving Traditional Malabar Snacks",
+      "items": "Pazhampori • Samosa • Bajji • Local Specialties"
+    }
+  }
+}
